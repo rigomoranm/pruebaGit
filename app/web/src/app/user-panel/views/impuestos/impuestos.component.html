@@ -1,0 +1,103 @@
+<div class="animated fadeIn">
+    <div *ngIf="mostrarNotificacion" class="alert alert-success">
+        <button type="button" class="close" aria-label="Close" (click)="closeAlert()">
+                        <span aria-hidden="true">&times;</span>
+                      </button> {{mensajeNotificacion}}
+    </div>
+    <div *ngIf="mostrarMensajeError" class="alert alert-danger">
+        <button type="button" class="close" aria-label="Close" (click)="closeAlert()">
+                            <span aria-hidden="true">&times;</span>
+                          </button> {{mensajeError}}
+    </div>
+
+
+    <div class="card">
+        <div class="card-header"><i class="fa fa-edit"></i> Impuestos
+
+
+        </div>
+        <div class="card-body collapse in show" aria-expanded="true" aria-hidden="false" style="overflow: visible; height: auto; display: block;">
+            <form (ngSubmit)="agregar()" #agreagarForm="ngForm" name="agreagarForm">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>Nombre:</label>
+                            <input #txtNombre type="text" class="form-control" [(ngModel)]="impuestos.nombre" name="nombre" required>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Tipo Impuesto:</label>
+                            <select #selTipoImpuesto class="form-control" [(ngModel)]="impuestos.tipoImpuesto_id" name="tipoImpuesto_id">
+                                  <option *ngFor="let ti of tiposImpuesto"  [value]="ti.id" > 
+                                        {{ti.nombre}}
+                                  </option>
+                              </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>Descripción:</label>
+                            <input type="text" class="form-control" [(ngModel)]="impuestos.descripcion" name="descripcion">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                        <br>
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <button type="submit" class="btn btn-ffacil" [disabled]="!agreagarForm.form.valid">
+                              Agregar
+                            </button>
+                            <button type="button" class="btn btn-danger" (click)="limpiar()">
+                                Cancelar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+
+                                <td>Nombre</td>
+                                <td>Tipo Impuesto</td>
+                                <td>Descripción</td>
+                                <td></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let impUsuario of impuestosUsuario">
+
+                                <td>{{impUsuario.nombre}}</td>
+
+                                <td>{{impUsuario.tipo_impuesto.nombre}}</td>
+                                <td>{{impUsuario.descripcion}}</td>
+                                <td>
+                                    <button class="btn btn-sm btn-success" (click)="editar(impUsuario.id)" mdbTooltip="Editar" placement="top">
+                                                <i class="fa fa-pencil"></i>
+                                            </button>&nbsp;&nbsp;
+                                    <button class="btn btn-sm btn-danger" (click)="confirmar(impUsuario.id)" mdbTooltip="Eliminar" placement="top">
+                                                    <i class="fa fa-remove"></i>
+                                            </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<app-confirmacion #appConfirmacion></app-confirmacion>

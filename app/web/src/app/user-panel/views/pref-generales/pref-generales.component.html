@@ -1,0 +1,66 @@
+<div class="animated fadeIn">
+    <div *ngIf="mostrarNotificacion" class="alert alert-success">
+        <button type="button" class="close" aria-label="Close" (click)="closeAlert()">
+                    <span aria-hidden="true">&times;</span>
+                  </button> Se actualizaron las preferencias generales
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <form (ngSubmit)="guardar()" #actulizarForm="ngForm" name="actulizarForm">
+
+                <div class="card">
+                    <div class="card-header"><i class="fa fa-edit"></i> Preferencias Generales
+
+
+                    </div>
+                    <div class="card-body collapse in show" aria-expanded="true" aria-hidden="false" style="overflow: visible; height: auto; display: block;">
+
+                        <div class="form-group">
+                            <label>Formato de Fecha:</label>
+
+                            <select class="form-control" [(ngModel)]="conf.formatoFecha" name="formatoFecha">
+                                    <option value="dd-mm-yyyy">31-12-2018</option>
+                                    <option value="dd/mm/yyyy">31/12/2018</option>
+                                    <option value="dd.mm.yyyy">31.12.2018</option>
+                                    <option value="mm-dd-yyyy">12-31-2018</option>
+                                    <option value="mm/dd/yyyy">12/31/2018</option>
+                                    <option value="mm.dd.yyyy">12.31.2018</option>
+                                    <option value="yyyy-mm-dd">2018-12-31</option>
+                                    <option value="yyyy/mm/dd">2018/12/31</option>
+                                    <option value="yyyy.mm.dd">2018.12.31</option>
+                                  </select>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                        Longitud mínima de número de factura de venta:
+                                    </label>
+                            <input type="number" class="form-control" [(ngModel)]="conf.longMinima" name="longMinima" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Numero de decimales totales:</label>
+                            <select class="form-control" [(ngModel)]="conf.numDecimales" name="numDecimales">
+                                    <option value="2">2 decimales</option>
+                                    <option value="3">3 decimales</option>
+                                    <option value="4">4 decimales</option>
+                                    <option value="5">5 decimales</option>
+                                    <option value="6">6 decimales</option>
+                                  </select>
+                        </div>
+
+
+
+
+
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-ffacil" [disabled]="!actulizarForm.form.valid">Guardar</button>
+                        <!-- <button class="btn btn-danger" type="reset">
+                      <i class="fa fa-ban"></i> Cancelar</button></div> -->
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

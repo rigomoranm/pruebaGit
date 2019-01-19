@@ -1,0 +1,65 @@
+<app-header [fixed]="true" [navbarBrandFull]="{src: 'assets/img/brand/logo.jpg', width: 89, height: 51, alt: 'CoreUI Logo'}" [navbarBrandMinimized]="{src: 'assets/img/brand/sygnet.svg', width: 30, height: 30, alt: 'CoreUI Logo'}" [sidebarToggler]="'lg'"
+    [asideMenuToggler]="false">
+
+    <ul class="nav navbar-nav ml-auto" style="margin-right: 10px;">
+
+        <li class="nav-item d-md-down-none">
+            <a class="nav-link" href="#" routerLink="/user/configuracion" style="margin-right: 10px"><i class="fa fa-gears"></i>Configuración </a>
+        </li>
+        <li class="nav-item dropdown" dropdown placement="bottom right">
+            <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle (click)="false">
+                    {{usuarioActual}}
+                <!-- <img src="assets/img/avatars/6.jpg" class="img-avatar" alt="admin@bootstrapmaster.com" /> -->
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
+                <div class="dropdown-header text-center"><strong>Cuenta</strong></div>
+                <a class="dropdown-item" style="cursor:pointer"><i class="fa fa-bell-o"></i> Nombre del negocio</a>
+                <a class="dropdown-item" routerLink="/user/configuracion"><i class="fa fa-gear"></i> Configuración</a>
+                <a class="dropdown-item" routerLink="/user/cuenta"><i class="fa fa-user"></i> Cuenta</a>
+                <div class="divider"></div>
+                <a class="dropdown-item" routerLink="/login" (click)="salir()"><i class="fa fa-lock"></i> Salir</a>
+            </div>
+        </li>
+    </ul>
+</app-header>
+<div class="app-body">
+    <app-sidebar [fixed]="true" [display]="'lg'">
+        <app-sidebar-nav [navItems]="navItems" [perfectScrollbar] [disabled]="sidebarMinimized"></app-sidebar-nav>
+        <app-sidebar-minimizer></app-sidebar-minimizer>
+    </app-sidebar>
+    <!-- Main content -->
+    <main class="main">
+        <!-- Breadcrumb -->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a routerLink="/user/inicio">Inicio</a></li>
+            <li class="breadcrumb-item" *ngIf="menuNivel1!=''">
+
+                <a *ngIf="menuNivel2!=''" [routerLink]="routerNivel1">{{menuNivel1}}</a>
+                <span *ngIf="menuNivel2==''">{{menuNivel1}}</span>
+
+            </li>
+            <li class="breadcrumb-item" *ngIf="menuNivel2!=''">
+                {{menuNivel2}}
+            </li>
+
+
+
+            <!-- <li class="breadcrumb-menu d-md-down-none">
+                <div class="btn-group" role="group" aria-label="Button group">
+                    <a class="btn" href="./">
+                        <i class="fa fa-plus-circle"></i> &nbsp;Nuevo usuario</a>
+
+                </div>
+            </li> -->
+        </ol>
+        <div class="container-fluid">
+            <router-outlet></router-outlet>
+        </div>
+    </main>
+
+</div>
+<app-footer>
+    <span><a href="#">Factura Facil</a> &copy; 2019 </span>
+
+</app-footer>

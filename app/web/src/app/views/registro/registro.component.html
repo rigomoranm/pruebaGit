@@ -1,0 +1,104 @@
+<div class="app flex-row align-items-center pace-done">
+    <div class="app-body">
+        <main class="main d-flex align-items-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-5 mx-auto">
+                        <div class="card-group">
+                            <div class="card p-4">
+                                <div class="card-body">
+                                    <!-- Default form contact -->
+                                    <form (ngSubmit)="registro()" #registroForm="ngForm">
+
+
+                                        <div class="row">
+
+                                            <div class="col-md-12 text-center">
+                                                <p class="h4 ">¡Crea tu cuenta gratis!</p>
+                                                <small class="text-sm-left">
+                                                                <a href="" target="_blank">Prueba todas las funciones durante 30 días</a>
+                                                              </small>
+                                            </div>
+                                        </div>
+
+                                        <br>
+                                        <div class="input-group mb-3">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="icon-user"></i></span>
+                                            </div>
+                                            <input #txtCorreo="ngModel" type="email" id="txtCorreo" class="form-control" required="" autofocus="" [(ngModel)]="usuario.email" [email]="true" placeholder="Usuario/Correo" required name="Correo">
+                                        </div>
+                                        <div [hidden]="txtCorreo.valid || txtCorreo.pristine" class="alert alert-danger">
+                                            Email valido requerido
+                                        </div>
+                                        <div class="input-group mb-4">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="icon-lock"></i></span>
+                                            </div>
+                                            <input #txtPassword="ngModel" type="password" class="form-control" id="txtPassword" required="" [(ngModel)]="usuario.password" placeholder="Asigna tu clave" required name="Password">
+                                        </div>
+                                        <div [hidden]="txtPassword.valid || txtPassword.pristine" class="alert alert-danger">
+                                            Contraseña requerida
+                                        </div>
+
+                                        <div class="input-group mb-4">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="icon-organization"></i></span>
+                                            </div>
+                                            <input #txtEmpresa="ngModel" type="text" id="txtEmpresa" class="form-control" required="" autofocus="" [(ngModel)]="usuario.empresa" (keyup.enter)="registro()" placeholder="Nombre de tu Negocio" required name="empresa">
+                                        </div>
+                                        <div [hidden]="txtEmpresa.valid || txtEmpresa.pristine" class="alert alert-danger">
+                                            Empresa requerida
+                                        </div>
+
+                                        <div class="row">
+
+                                            <div class="col-md-6 text-center">
+
+                                                <small> <a href="#" >¿Tienes un codigo promocional?</a></small>
+                                            </div>
+                                            <div class="col-md-6 text-center">
+                                                <small>¿Ya tienes una cuenta?
+                                                    <a href="" routerLink="/login">Ingresar</a>
+                                                </small>
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <div [hidden]="!error" class="alert alert-danger">
+                                            {{mensajeError}}
+                                        </div>
+
+                                        <!-- Send button -->
+                                        <button class="btn btn-primary btn-block" type="submit" [disabled]="!registroForm.form.valid">Crear Cuenta</button>
+
+                                        <div class="row">
+
+                                            <div class="col-md-12 text-center">
+                                                <small>Al crear tu cuenta aceptas nuestros<br>
+                                                <a href="" routerLink="/registro">Terminos y Condiciones</a> y
+                                                <a href="" routerLink="/registro">Politicas de Tratamiento de Datos</a> 
+                                                </small>
+                                            </div>
+
+                                        </div>
+
+
+                                    </form>
+                                    <!-- Default form contact -->
+
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>

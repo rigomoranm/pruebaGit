@@ -1,0 +1,95 @@
+<div class="animated fadeIn">
+
+    <div *ngIf="mostrarNotificacion" class="alert alert-success">
+        <button type="button" class="close" aria-label="Close" (click)="closeAlert()">
+                        <span aria-hidden="true">&times;</span>
+                      </button> {{mensajeNotificacion}}
+    </div>
+    <div *ngIf="mostrarMensajeError" class="alert alert-danger">
+        <button type="button" class="close" aria-label="Close" (click)="closeAlert()">
+                            <span aria-hidden="true">&times;</span>
+                          </button> {{mensajeError}}
+    </div>
+
+    <div class="card">
+        <div class="card-header"><i class="fa fa-edit"></i> Términos de Pago
+
+
+        </div>
+        <div class="card-body collapse in show" aria-expanded="true" aria-hidden="false" style="overflow: visible; height: auto; display: block;">
+            <form (ngSubmit)="agregar()" #agreagarForm="ngForm" name="agreagarForm">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label>Nombre:</label>
+                            <input #txtNombre type="text" class="form-control" [(ngModel)]="terPago.nombre" name="nombre" required>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1">Días:</label>
+                            <select #selTerPago class="form-control" [(ngModel)]="terPago.dias" name="dias">
+                                    <option value="0">0</option>
+                                    <option value="8">8</option>
+                                    <option value="15">15</option>
+                                    <option value="30">30</option>
+                                    <option value="60">60</option>
+                                </select>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+                        <br>
+                        <div class="btn-group btn-group-toggle  flex-md-row" data-toggle="buttons">
+                            <button type="submit" class="btn btn-ffacil " [disabled]="!agreagarForm.form.valid">
+                                Agregar
+                            </button>
+                            <button type="button" class="btn btn-danger" (click)="limpiar()">
+                                    Cancelar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <td>Nombre</td>
+                                <td>Días</td>
+                                <td>Estado</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let terminos of terPagoUsuario">
+
+                                <td>{{terminos.nombre}}</td>
+
+                                <td>{{terminos.dias}}</td>
+                                <td>
+                                    <input (click)="actualizarEstatus(terminos)" [checked]="terminos.estado" class="form-check-input" type="checkbox" value="">
+                                    <!-- <mdb-checkbox (click)="actualizarEstatus(terminos)" [checked]="terminos.estado" [default]="true"></mdb-checkbox> -->
+
+                                </td>
+                                <td>
+                                    <button class="btn btn-sm btn-success" (click)="editar(terminos.id)" mdbTooltip="Editar" placement="top">
+                            <i class="fa fa-pencil"></i>
+                        </button>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+
+    </div>
+</div>

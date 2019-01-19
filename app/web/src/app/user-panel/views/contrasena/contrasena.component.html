@@ -1,0 +1,57 @@
+<div *ngIf="mostrarNotificacion" class="alert alert-success">
+    <button type="button" class="close" aria-label="Close" (click)="closeAlert()">
+                    <span aria-hidden="true">&times;</span>
+                  </button> La contraseña se actualzo correctamente
+</div>
+<div class="animated fadeIn">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <form (ngSubmit)="cambiarPass()" #actulizarForm="ngForm" name="actulizarForm">
+
+                <div class="card">
+                    <div class="card-header"><i class="fa fa-edit"></i> Contraseña
+
+                        <div class="card-header-actions">
+                            <a class="btn-setting d-sm-down-none" routerLink="/user/cuenta">
+                                <i class="fa fa-gear"></i> Mi Cuenta
+                            </a>
+
+
+                        </div>
+                    </div>
+                    <div class="card-body collapse in show" aria-expanded="true" aria-hidden="false" style="overflow: visible; height: auto; display: block;">
+
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label>Nueva Contraseña:</label>
+                                    <input type="password" class="form-control" #txtPassword="ngModel" [(ngModel)]="usuario.password" name="password" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label>Confirmar Contraseña:</label>
+                                    <input type="password" class="form-control" #txtConfirmarPassword="ngModel" [(ngModel)]="usuario.confirmarPassword" name="confirmarPassword" required (keyup.enter)="cambiarPass()">
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="usuario.password != usuario.confirmarPassword && !txtConfirmarPassword.pristine" class="alert alert-danger">
+                            Las contaseñas no coinciden
+                        </div>
+
+
+
+
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-ffacil" [disabled]="!actulizarForm.form.valid || (usuario.password != usuario.confirmarPassword)">Guardar</button>
+                        <!-- <button class="btn btn-danger" type="reset">
+                          <i class="fa fa-ban"></i> Cancelar</button></div> -->
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
